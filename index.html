@@ -303,7 +303,11 @@
             <!-- To make this form functional, sign up at-->
             <!-- https://startbootstrap.com/solution/contact-forms-->
             <!-- to get an API token!-->
-            <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+            <form
+              id="contactForm"
+              action="https://formsubmit.co/juanprofesor@proton.me"
+              method="POST"
+            >
               <!-- Name input-->
               <div class="form-floating mb-3">
                 <input
@@ -312,6 +316,7 @@
                   type="text"
                   placeholder="Enter your name..."
                   data-sb-validations="required"
+                  name="name"
                 />
                 <label for="name">Full name</label>
                 <div class="invalid-feedback" data-sb-feedback="name:required">
@@ -326,6 +331,7 @@
                   type="email"
                   placeholder="name@example.com"
                   data-sb-validations="required,email"
+                  name="email"
                 />
                 <label for="email">Email address</label>
                 <div class="invalid-feedback" data-sb-feedback="email:required">
@@ -343,6 +349,7 @@
                   type="tel"
                   placeholder="(123) 456-7890"
                   data-sb-validations="required"
+                  name="phone"
                 />
                 <label for="phone">Phone number</label>
                 <div class="invalid-feedback" data-sb-feedback="phone:required">
@@ -358,6 +365,7 @@
                   placeholder="Enter your message here..."
                   style="height: 10rem"
                   data-sb-validations="required"
+                  name="message"
                 ></textarea>
                 <label for="message">Message</label>
                 <div
