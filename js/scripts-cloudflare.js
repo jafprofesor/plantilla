@@ -54,7 +54,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     elements: "#portfolio a.portfolio-box",
   });
 
-  // Contact form submission handler for Render API
+  // Contact form submission handler for Cloudflare Pages Functions
   const contactForm = document.getElementById("contactForm");
   const submitButton = document.getElementById("submitButton");
   const successMessage = document.getElementById("submitSuccessMessage");
@@ -77,9 +77,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
       const data = Object.fromEntries(formData);
 
       try {
-        // Send data to Render API
-        // Replace 'YOUR_RENDER_API_URL' with your actual Render service URL
-        const response = await fetch(contactForm.action, {
+        // Send data to Cloudflare Pages Function
+        const response = await fetch("/api/send-email", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -87,17 +86,28 @@ window.addEventListener("DOMContentLoaded", (event) => {
           body: JSON.stringify(data),
         });
 
-        if (response.ok) {
+        const result = await response.json();
+
+        if (response.ok && result.success) {
           // Show success message
           successMessage.classList.remove("d-none");
           contactForm.reset();
         } else {
-          throw new Error("Error en el servidor");
+          throw new Error(result.error || "Error en el servidor");
         }
       } catch (error) {
         // Show error message
         console.error("Error:", error);
         errorMessage.classList.remove("d-none");
+
+        // Update error message with specific error if available
+        const errorDiv = errorMessage.querySelector(".text-center");
+        if (error.message && error.message !== "Error en el servidor") {
+          errorDiv.textContent = error.message;
+        } else {
+          errorDiv.textContent =
+            "Error al enviar el mensaje. Por favor, intenta nuevamente.";
+        }
       } finally {
         // Re-enable submit button
         submitButton.disabled = false;

@@ -297,15 +297,10 @@
         <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
           <div class="col-lg-6">
             <!-- * * * * * * * * * * * * * * *-->
-            <!-- * * Render API Contact Form * *-->
+            <!-- * * Cloudflare Pages Function Contact Form * *-->
             <!-- * * * * * * * * * * * * * * *-->
-            <!-- This form uses Render API for email sending-->
-            <!-- Replace YOUR_RENDER_API_URL with your actual Render service URL-->
-            <form
-              id="contactForm"
-              action="https://YOUR_RENDER_API_URL/api/send-email"
-              method="POST"
-            >
+            <!-- This form uses Cloudflare Pages Functions for email sending-->
+            <form id="contactForm" action="/api/send-email" method="POST">
               <!-- Name input-->
               <div class="form-floating mb-3">
                 <input
@@ -313,13 +308,10 @@
                   id="name"
                   type="text"
                   placeholder="Enter your name..."
-                  data-sb-validations="required"
                   name="name"
+                  required
                 />
-                <label for="name">Full name</label>
-                <div class="invalid-feedback" data-sb-feedback="name:required">
-                  A name is required.
-                </div>
+                <label for="name">Nombre completo</label>
               </div>
               <!-- Email address input-->
               <div class="form-floating mb-3">
@@ -328,16 +320,10 @@
                   id="email"
                   type="email"
                   placeholder="name@example.com"
-                  data-sb-validations="required,email"
                   name="email"
+                  required
                 />
-                <label for="email">Email address</label>
-                <div class="invalid-feedback" data-sb-feedback="email:required">
-                  An email is required.
-                </div>
-                <div class="invalid-feedback" data-sb-feedback="email:email">
-                  Email is not valid.
-                </div>
+                <label for="email">Dirección de correo</label>
               </div>
               <!-- Phone number input-->
               <div class="form-floating mb-3">
@@ -346,37 +332,23 @@
                   id="phone"
                   type="tel"
                   placeholder="(123) 456-7890"
-                  data-sb-validations=""
                   name="phone"
                 />
-                <label for="phone">Phone number</label>
-                <div class="invalid-feedback" data-sb-feedback="phone:required">
-                  A phone number is required.
-                </div>
+                <label for="phone">Número de teléfono (opcional)</label>
               </div>
               <!-- Message input-->
               <div class="form-floating mb-3">
                 <textarea
                   class="form-control"
                   id="message"
-                  type="text"
                   placeholder="Enter your message here..."
                   style="height: 10rem"
-                  data-sb-validations="required"
                   name="message"
+                  required
                 ></textarea>
-                <label for="message">Message</label>
-                <div
-                  class="invalid-feedback"
-                  data-sb-feedback="message:required"
-                >
-                  A message is required.
-                </div>
+                <label for="message">Mensaje</label>
               </div>
               <!-- Submit success message-->
-              <!---->
-              <!-- This is what your users will see when the form-->
-              <!-- has successfully submitted-->
               <div class="d-none" id="submitSuccessMessage">
                 <div class="text-center mb-3">
                   <div class="fw-bolder">¡Mensaje enviado correctamente!</div>
@@ -384,9 +356,6 @@
                 </div>
               </div>
               <!-- Submit error message-->
-              <!---->
-              <!-- This is what your users will see when there is-->
-              <!-- an error submitting the form-->
               <div class="d-none" id="submitErrorMessage">
                 <div class="text-center text-danger mb-3">
                   Error al enviar el mensaje. Por favor, intenta nuevamente.
@@ -426,6 +395,6 @@
     <!-- SimpleLightbox plugin JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
     <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
+    <script src="js/scripts-cloudflare.js"></script>
   </body>
 </html>
